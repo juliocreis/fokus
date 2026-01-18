@@ -7,17 +7,17 @@ const titulo = document.querySelector('.app__title');
 
 focoBt.addEventListener('click', () => {
     alteraContexto('foco');
-    alteraTitulo('Otimize sua produtividade, <strong class="app__title-strong">mergulhe no que importa.</strong>');
+    alteraTituloContexto('Otimize sua produtividade, <strong class="app__title-strong">mergulhe no que importa.</strong>');
 });
 
 descansoCurtoBt.addEventListener('click', () => {
     alteraContexto('descanso-curto');
-    alteraTitulo('Que tal dar uma respirada? <strong class="app__title-strong">Faça uma pausa curta!</strong>');
+    alteraTituloContexto('Que tal dar uma respirada? <strong class="app__title-strong">Faça uma pausa curta!</strong>');
 });
 
 descansoLongoBt.addEventListener('click', () => {
     alteraContexto('descanso-longo');
-    alteraTitulo('Hora de voltar à superfície. <strong class="app__title-strong">Faça uma pausa longa.</strong>');
+    alteraTituloContexto('Hora de voltar à superfície. <strong class="app__title-strong">Faça uma pausa longa.</strong>');
 });
 
 function alteraContexto(contexto) {
@@ -25,6 +25,6 @@ function alteraContexto(contexto) {
     banner.setAttribute('src', `./imagens/${contexto}.png`);
 }
 
-function alteraTitulo(texto) {
+function alteraTituloContexto(texto) {
     titulo.innerHTML = texto;
 }
