@@ -3,6 +3,8 @@ const focoBt = document.querySelector('.app__card-button--foco');
 const descansoCurtoBt = document.querySelector('.app__card-button--curto');
 const descansoLongoBt = document.querySelector('.app__card-button--longo');
 const startPauseBt = document.querySelector('#start-pause');
+const startPauseSpan = document.querySelector('#start-pause span')
+const startPauseImage = document.querySelector('#start-pause img');
 const banner = document.querySelector('.app__image');
 const titulo = document.querySelector('.app__title');
 const botoes = document.querySelectorAll('.app__card-button');
@@ -56,8 +58,8 @@ function alteraTituloContexto(texto) {
 
 const contagemRegressiva = () => {
     if(tempoDecorridoEmSegundos <= 0) {
-        beep.play();
-        zerar();
+        // beep.play();
+        zerar(); 
         alert('Tempo finalizado!');
         return;
     } 
@@ -73,11 +75,15 @@ function iniciarOuPausar() {
         zerar();
         return;
     }
-    intervaloId = setInterval(contagemRegressiva, 1000);
     play.play();
+    intervaloId = setInterval(contagemRegressiva, 1000);
+    startPauseSpan.textContent = "Pausar";
+    startPauseImage.setAttribute('src', './imagens/pause.png');
 } 
 
 function zerar() {
     clearInterval(intervaloId);
     intervaloId = null;
+    startPauseSpan.textContent = "Começar";
+    startPauseImage.setAttribute('src', './imagens/play_arrow.png');
 }
