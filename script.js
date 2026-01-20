@@ -8,6 +8,9 @@ const titulo = document.querySelector('.app__title');
 const botoes = document.querySelectorAll('.app__card-button');
 const musicaFocoInput = document.querySelector('#alternar-musica');
 const musica = new Audio('./sons/luna-rise-part-one.mp3');
+const play = new Audio('./sons/play.wav');
+const pause = new Audio('./sons/pause.mp3');
+const beep = new Audio('./sons/beep.mp3');
 musica.loop = true;
 
 let tempoDecorridoEmSegundos = 5;
@@ -53,6 +56,7 @@ function alteraTituloContexto(texto) {
 
 const contagemRegressiva = () => {
     if(tempoDecorridoEmSegundos <= 0) {
+        beep.play();
         zerar();
         alert('Tempo finalizado!');
         return;
@@ -65,10 +69,12 @@ startPauseBt.addEventListener('click', iniciarOuPausar);
 
 function iniciarOuPausar() {
     if(intervaloId) {
+        pause.play();
         zerar();
         return;
     }
     intervaloId = setInterval(contagemRegressiva, 1000);
+    play.play();
 } 
 
 function zerar() {
