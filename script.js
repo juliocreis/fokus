@@ -64,13 +64,13 @@ function alteraTituloContexto(texto) {
 
 const contagemRegressiva = () => {
     if(tempoDecorridoEmSegundos <= 0) {
-        // beep.play();
+        beep.play();
         zerar(); 
         alert('Tempo finalizado!');
         return;
     } 
-    tempoDecorridoEmSegundos -= 1;
     mostrarTempo();
+    tempoDecorridoEmSegundos -= 1;
 }
 
 startPauseBt.addEventListener('click', iniciarOuPausar);
