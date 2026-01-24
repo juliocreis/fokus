@@ -9,6 +9,12 @@ function atualizarTarefas() {
   localStorage.setItem("tarefas", JSON.stringify(tarefas));
 }
 
+function limparConteudo() {
+  textarea.value = "";
+  textarea.classList.add("hidden");
+  formAdicionaTask.classList.toggle("hidden");
+}
+
 function criaTarefa(tarefa) {
   const li = document.createElement("li");
   li.classList.add("app__section-task-list-item");
@@ -39,10 +45,10 @@ function criaTarefa(tarefa) {
   button.classList.add("app_button-edit");
 
   button.onclick = () => {
-    debugger
+    debugger;
     const novaDescricao = prompt("Qual a nova descrição?");
-    console.log('Verificando nova descrição:', novaDescricao);
-    
+    console.log("Verificando nova descrição:", novaDescricao);
+
     if (novaDescricao) {
       paragrafo.textContent = novaDescricao;
       tarefa.descricao = novaDescricao;
@@ -63,6 +69,14 @@ function criaTarefa(tarefa) {
 
 adicionarTaskBt.addEventListener("click", () => {
   formAdicionaTask.classList.toggle("hidden");
+  textarea.classList.remove("hidden");
+
+  const cancelarBotao = document.querySelector(
+    ".app__form-footer__button--cancel",
+  );
+  cancelarBotao.onclick = () => {
+    limparConteudo();
+  };
 });
 
 formAdicionaTask.addEventListener("submit", (evento) => {
@@ -76,8 +90,7 @@ formAdicionaTask.addEventListener("submit", (evento) => {
 
   const elementoTarefa = criaTarefa(tarefa);
   ulTarefas.append(elementoTarefa);
-  textarea.value = "";
-  textarea.classList.add("hidden");
+  limparConteudo();
 });
 
 tarefas.forEach((tarefa) => {
