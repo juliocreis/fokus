@@ -11,10 +11,10 @@ const btnRemoverTodas = document.querySelector('#btn-remover-todas');
 let tarefaSelecionada = null;
 let liTarefaSelecionada = null;
 
-let tarefas = JSON.parse(localStorage.getItem("tarefas")) || [];
+let tarefas = JSON.parse(localStorage.getItem("tarefas")) || []; // localStorage.getItem retorna uma string ou null, o JSON.parse converte JSON em objeto
 
 function atualizarTarefas() {
-  localStorage.setItem("tarefas", JSON.stringify(tarefas));
+  localStorage.setItem("tarefas", JSON.stringify(tarefas)); // O localStorage aceita apenas strings por isso o JSON.stringify
 }
 
 function limparConteudo() {
@@ -130,6 +130,7 @@ tarefas.forEach((tarefa) => {
   ulTarefas.append(elementoTarefa);
 });
 
+// Quando a contagem regressiva do contexto "foco" acabar, adicionar o estilo e desabilitar o botão da tarefa
 document.addEventListener("FocoFinalizado", () => {
   if (tarefaSelecionada && liTarefaSelecionada) {
     liTarefaSelecionada.classList.remove("app__section-task-list-item-active");

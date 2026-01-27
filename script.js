@@ -23,7 +23,7 @@ const tempoContexto = {
   'descanso-longo': 15
 }
 
-let tempoDecorridoEmSegundos = 30;
+let tempoDecorridoEmSegundos = 1500;
 let intervaloId = null;
 
 musicaFocoInput.addEventListener("change", () => {
@@ -35,7 +35,7 @@ musicaFocoInput.addEventListener("change", () => {
 });
 
 focoBt.addEventListener("click", () => {
-  tempoDecorridoEmSegundos = 30;
+  tempoDecorridoEmSegundos = 1500;
   alteraContexto("foco");
   alteraTituloContexto(
     'Otimize sua produtividade, <strong class="app__title-strong">mergulhe no que importa.</strong>',
@@ -44,7 +44,7 @@ focoBt.addEventListener("click", () => {
 });
 
 descansoCurtoBt.addEventListener("click", () => {
-  tempoDecorridoEmSegundos = 5;
+  tempoDecorridoEmSegundos = 300;
   alteraContexto("descanso-curto");
   alteraTituloContexto(
     'Que tal dar uma respirada? <strong class="app__title-strong">Faça uma pausa curta!</strong>',
@@ -53,7 +53,7 @@ descansoCurtoBt.addEventListener("click", () => {
 });
 
 descansoLongoBt.addEventListener("click", () => {
-  tempoDecorridoEmSegundos = 15;
+  tempoDecorridoEmSegundos = 900;
   alteraContexto("descanso-longo");
   alteraTituloContexto(
     'Hora de voltar à superfície. <strong class="app__title-strong">Faça uma pausa longa.</strong>',
@@ -76,7 +76,7 @@ function alteraTituloContexto(texto) {
 
 const contagemRegressiva = () => {
   if (tempoDecorridoEmSegundos < 0) {
-    // beep.play();
+    beep.play();
     zerar();
     alert("Tempo finalizado!");
     restaurarTempoContextoAtual();
