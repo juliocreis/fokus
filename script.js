@@ -17,6 +17,12 @@ const pause = new Audio("./sons/pause.mp3");
 const beep = new Audio("./sons/beep.mp3");
 musica.loop = true;
 
+const tempoContexto = {
+  'foco': 30,
+  'descanso-curto': 5,
+  'descanso-longo': 15
+}
+
 let tempoDecorridoEmSegundos = 30;
 let intervaloId = null;
 
@@ -69,10 +75,11 @@ function alteraTituloContexto(texto) {
 }
 
 const contagemRegressiva = () => {
-  if (tempoDecorridoEmSegundos <= 0) {
-    beep.play();
+  if (tempoDecorridoEmSegundos < 0) {
+    // beep.play();
     zerar();
     alert("Tempo finalizado!");
+    restaurarTempoContextoAtual();
     
     const focoAtivo = html.getAttribute("data-contexto") == "foco";
     if (focoAtivo) {
@@ -106,6 +113,7 @@ function zerar() {
   intervaloId = null;
   startPauseSpan.textContent = "Começar";
   startPauseImage.setAttribute("src", "./imagens/play_arrow.png");
+
 }
 
 function mostrarTempo() {
@@ -115,6 +123,12 @@ function mostrarTempo() {
     second: "2-digit",
   });
   temporizador.innerHTML = `${tempoFormatado}`;
+}
+
+function restaurarTempoContextoAtual() {
+  const contextoAtual = html.getAttribute('data-contexto');
+  tempoDecorridoEmSegundos = tempoContexto[contextoAtual];
+  mostrarTempo();
 }
 
 mostrarTempo();
